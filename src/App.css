@@ -1,0 +1,30 @@
+textarea {
+  text-align: left;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  outline: none;
+}
+
+#inputArea {
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#newBtn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  background: transparent;
+  color: #808080;
+  cursor: pointer;
+}
+
+#newBtn:hover {
+  color: #dddddd;
+}
+
+*:focus {
+  outline: none;
+}
