@@ -9,11 +9,18 @@ class Table extends Component {
     }
   }
 
+  getAllPostsFromApi() {
+
+  }
+
+  componentDidMount() {
+    console.log("API GET request here")
+  }
 
   render() {
     return (
       <div>
-        
+
       </div>
     )
   }
