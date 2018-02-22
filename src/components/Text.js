@@ -38,7 +38,7 @@ class Text extends Component {
       const Post = {
         post: post,
         feeling: feeling,
-        createTime: (new Date()).getTime()
+        createAt: new Date()
       }
       this.createNewPostToApi(Post)
     }
