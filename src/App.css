@@ -46,3 +46,7 @@ textarea {
   display: flex;
   justify-content: center;
 }
+
+.deleteBtn {
+  margin: 0 10px;
+}

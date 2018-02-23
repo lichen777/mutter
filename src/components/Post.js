@@ -2,57 +2,54 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Post extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  handleDelete(e, id) {
-    e.preventDefault()
+  handleDelete (e, id) {
     console.log(id)
     this.updateStatustoApi(id)
+    document.location.reload()
   }
 
-  updateStatustoApi(id) {
-    fetch('/api/posts', {
+  updateStatustoApi (key) {
+    fetch('/api/posts/' + key, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: {
-        id: id,
-        isDeleted: true
+        'Content-Type': 'application/json'
       }
     })
-      .then((response) => response.json())
+      .then(res => res.json())
       .catch((error) => {
-        console.error(error);
+        console.error(error)
       })
   }
 
-  render() {
+  render () {
     const time = new Date(this.props.createTime)
     const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
     }
     return (
-      <div className="entry">
-        <p>{time.toLocaleString('en-US', options)}</p>
-        <p>Feeling: {this.props.feeling}</p>
-        <p>{this.props.post}</p>
-        <span>
-          <button
-          onClick={(e) => this.handleDelete(e, this.props.id)}
-          type="button">
-          Delete
-          </button>
-        </span>
+      <div className='entry'>
+        <p>
+          {time.toLocaleString('en-US', options)}  
+          <span><button className='deleteBtn' type='button' onClick={(e) => this.handleDelete(e, this.props.id)}> Delete </button></span>
+        </p>
+        <p>
+          Feeling:
+          {this.props.feeling}
+        </p>
+        <p>
+          {this.props.post}
+        </p>
       </div>
     )
   }
@@ -61,7 +58,8 @@ class Post extends Component {
 Post.propTypes = {
   createTime: PropTypes.string,
   feeling: PropTypes.string,
-  post: PropTypes.string
+  post: PropTypes.string,
+  isDeleted: PropTypes.bool
 }
 
-export default Post;
+export default Post

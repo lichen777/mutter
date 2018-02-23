@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import FeelingDropdown from './Dropdown'
 
 class Text extends Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {
       input: ''
@@ -12,11 +12,11 @@ class Text extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleInput(e) {
+  handleInput (e) {
     e.preventDefault()
     if (this.state.input.length > 140) {
       let prevInput = this.state.input
-      console.log("Your input hits the 140 characters limit.")
+      console.log('Your input hits the 140 characters limit.')
       e.target.value = prevInput
     } else {
       this.setState({
@@ -25,49 +25,56 @@ class Text extends Component {
     }
   }
 
-  handleSubmit(e) {
+  handleSubmit (e) {
     const post = document.getElementById('textInput').value.trim()
     const feeling = e.target.firstChild.firstChild.textContent
     if (post.length === 0) {
       e.preventDefault()
-      console.log("Input cannot be empty.")
+      console.log('Input cannot be empty.')
     } else if (feeling.length > 10) {
       e.preventDefault()
-      console.log("Tell me your feeling today.")
+      console.log('Tell me your feeling today.')
     } else {
       const Post = {
         post: post,
         feeling: feeling,
-        createAt: new Date(),
+        createTime: new Date(),
         userID: 11
       }
       this.createNewPostToApi(Post)
     }
   }
 
-  createNewPostToApi(data) {
-    //alert(JSON.stringify(data))
+  createNewPostToApi (data) {
+    // alert(JSON.stringify(data))
     fetch('/api/posts', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
-      .then((response) => response.json())
+      .then(res => res.json())
       .catch((error) => {
-        console.error(error);
+        console.error(error)
       })
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <textarea id="textInput" rows="4" cols="50" onChange={this.handleInput} placeholder={this.props.initText}></textarea>
-        <form id="newPost" onSubmit={this.handleSubmit}>
-          <FeelingDropdown id="dropdown" />
-          <button type="submit" id="newBtn" form="newPost" >Send</button>
+        <textarea
+          id='textInput'
+          rows='4'
+          cols='50'
+          onChange={this.handleInput}
+          placeholder={this.props.initText}></textarea>
+        <form id='newPost' onSubmit={this.handleSubmit}>
+          <FeelingDropdown id='dropdown' />
+          <button type='submit' id='newBtn' form='newPost'>
+            Send
+          </button>
         </form>
       </div>
     )
@@ -82,4 +89,4 @@ Text.defaultProps = {
   initText: 'Enter something..'
 }
 
-export default Text;
+export default Text
