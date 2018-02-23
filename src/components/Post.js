@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Post extends Component {
-  constructor (props) {
-    super(props)
-  }
 
   handleDelete (e, id) {
     console.log(id)
@@ -47,9 +44,9 @@ class Post extends Component {
           Feeling:
           {this.props.feeling}
         </p>
-        <p>
+        <h3>
           {this.props.post}
-        </p>
+        </h3>
       </div>
     )
   }
